@@ -1,80 +1,63 @@
 package it.mercurya.model;
 
-import java.sql.Date;
-
-public class Newsletter {
+class Newsletter {
+	private Utente Utente_email;
+	private Genere Genere_nome;
+	private Regione Regione_id;
+	private Provincia Provincia_id;
+	private Comune Comune_id;
+	private String cadenza;
+	private java.sql.Date dataProxEmail;
 	
-	String Utente_email;
-	Genere Genere_nome;
-	Regione Regione_id;
-	Provincia Provincia_id;
-	Comune Comune_id;
-	String cadenza; //intero o stringa?!?!?!?!?!?!?!?!
-	Date dataProxEmail;
-	
-	public Newsletter() {
-		
-		super();
-		
+	public Newsletter(){
+		Genere_nome = null;
+		Regione_id = null;
+		Provincia_id = null;
+		Comune_id = null;
 	}
-
-	public String getUtentebyemail(String email) {
+	
+	public Utente getUtente_email() {
 		return Utente_email;
 	}
-
-	public void setUtentebyemail(String utente_email) {
+	public void setUtente_email(Utente utente_email) {
 		Utente_email = utente_email;
 	}
-
-	public Genere getGenerebynome() {
+	public Genere getGenere_nome() {
 		return Genere_nome;
 	}
-
-	public void setGenerebynome(Genere genere_nome) {
+	public void setGenere_nome(Genere genere_nome) {
 		Genere_nome = genere_nome;
 	}
-
-	public Regione getRegionebyid() {
+	public Regione getRegione_id() {
 		return Regione_id;
 	}
-
-	public void setRegionebyid(Regione regione_id) {
+	public void setRegione_id(Regione regione_id) {
 		Regione_id = regione_id;
 	}
-
-	public Provincia getProvinciabyid() {
+	public Provincia getProvincia_id() {
 		return Provincia_id;
 	}
-
-	public void setProvinciabyid(Provincia provincia_id) {
+	public void setProvincia_id(Provincia provincia_id) {
 		Provincia_id = provincia_id;
 	}
-
-	public Comune getComunebyid() {
+	public Comune getComune_id() {
 		return Comune_id;
 	}
-
-	public void setComune_byid(Comune comune_id) {
+	public void setComune_id(Comune comune_id) {
 		Comune_id = comune_id;
 	}
-
 	public String getCadenza() {
 		return cadenza;
 	}
-
 	public void setCadenza(String cadenza) {
 		this.cadenza = cadenza;
 	}
-
-	public Date getDataProxEmail() {
+	public java.sql.Date getDataProxEmail() {
 		return dataProxEmail;
 	}
-
-	public void setDataProxEmail(Date dataProxEmail) {
+	public void setDataProxEmail(java.sql.Date dataProxEmail) {
 		this.dataProxEmail = dataProxEmail;
 	}
-	
-	
-	
 
+	
 }

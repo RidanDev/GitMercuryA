@@ -64,7 +64,7 @@ public class ProvinciaImpl implements ProvinciaUtility{
 				
 				Regione r = new Regione();
 				RegioneImpl im = new RegioneImpl();
-				im.getRegioneById(rs.getInt("Regione_id"));
+				r = im.getRegioneById(rs.getInt("Regione_id"));
 
 				p.setRegione_id(r);
 				
@@ -107,7 +107,7 @@ public class ProvinciaImpl implements ProvinciaUtility{
 				
 				Regione r = new Regione();
 				RegioneImpl im = new RegioneImpl();
-				im.getRegioneById(rs.getInt("Regione_id"));
+				r = im.getRegioneById(rs.getInt("Regione_id"));
 
 				p.setRegione_id(r);
 				

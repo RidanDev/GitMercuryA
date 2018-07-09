@@ -1,124 +1,112 @@
 package it.mercurya.model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import it.mercurya.dao.Dao;
 
 public class NewsletterImpl implements NewsletterUtility{
-	
-	private Connection conn=Dao.getConnection();
-	private Statement st=null;
-	private ResultSet rst=null;
-	private Newsletter newsletter=null;
-	private ArrayList<Newsletter> newsletterList;
-	
+
 	@Override
-	public ArrayList<Newsletter> getallNewsletter() {
-		// TODO Auto-generated method stub
+	public ArrayList<Newsletter> getAllNewsletter() {
 		
-		newsletterList= new ArrayList<Newsletter>();
-		
+		Connection conn = null;
+		ArrayList<Newsletter> clist = new ArrayList<Newsletter>();
 		try {
+			conn = Dao.getConnection();
 			
-			st=conn.createStatement();
-			rst=st.executeQuery("select * from Newsletter");
+			// Qua proviamo una query:
+			Statement st = conn.createStatement();
 			
-			while(rst.next()) {
+			String query = "select * from newsletter";
+					
+			ResultSet rs = st.executeQuery(query);
+			
+			while (rs.next()) {
 				
-				newsletter= new Newsletter();
-				newsletter.getUtentebyemail(rst.getString("Utente_email"));
-				newsletterList.add(newsletter);
+				Newsletter c = new Newsletter();
+				
+				c.setUtente_email(new UtenteImpl().getUtenteByEmail(rs.getString("Utente_email")));
+				c.setGenere_nome(new GenereImpl().getGenereByName(rs.getString("Genere_nome")));
+				
+				// controlliamo se l'opzione sulla regione c'è (-1 significa non è settata l'opzione)
+				// se c'è regione, allora sono inclusi automaticamente anche le notifiche riguardanti provincie e comuni di quella regione
+				// se c'è provincia (quindi regione_id = -1), allora sono inclusi automaticamente le notifiche relative ai comuni di quella provincia 
+				// se c'è comune (quindi regione_id = -1 e provincia_id = -1), allora solo il comune selezionato
+				
+				if(rs.getInt("Regione_id") != -1){ // allora sono inclusi automaticamente tutte le provincie e comuni di quella regione
+					c.setRegione_id(new RegioneImpl().getRegioneById(rs.getInt("Regione_id")));
+				}else if(rs.getInt("Provincia_id") != -1){ // allora sono inclusi automaticamente tutti i comuni di quella provincia
+					c.setProvincia_id(new ProvinciaImpl().getProvinciaById(rs.getInt("Provincia_id")));
+				}else if(rs.getInt("comune_id") != -1){ // // allora solo quel comune interessa
+					c.setComune_id(new ComuneImpl().getComuneById(rs.getInt("Comune_id")));
+				}// altrimenti se tutti sono uguali a -1, significa che non ci sono preferenze sulla zona
+				
+				
+				c.setCadenza(rs.getString("cadenza"));
+				c.setDataProxEmail(rs.getDate("dataProxEmail"));
+				
+				
+				clist.add(c);
 				
 			}
-			
-		}
-		
-		catch(SQLException e) {
-			
+		}catch(SQLException e) {
 			e.printStackTrace();
-			
+		}finally {
+			try {
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		return newsletterList;
-		
+		return clist;
 	}
-	
-	
+
 	@Override
-	public Newsletter getNewsletterbyUtente(String Utente_email) {
-		// TODO Auto-generated method stub
+	public int insertNewsletter(Newsletter newsletter) {
+		Connection conn = null;
+		int return_code = -1; // 0=OK, -1=ERRORE, -2=utente già presente come ente/amministratore
 		
+		/*
 		try {
+			conn = Dao.getConnection();
 			
-			st=conn.createStatement();
-			rst=st.executeQuery("select * from Newsletter where Utente_email = '"+Utente_email+"'");
+			Utente u = new UtenteImpl().getUtenteByEmail(newsletter.getUtente_email().getEmail());
 			
-			if (rst.first()) {
-				
-				newsletter = new Newsletter();
-				newsletter.getUtentebyemail(rst.getString("Utente_email"));
-				newsletterList.add(newsletter);
-				
-			} 
 			
-			else{	
-				
-				newsletter = new Newsletter();
-				//newsletter.("unavaible");
-				
-				
 			}
 			
-			while(rst.next()) {
-	
-				
-				
+			// ******************DA FINIRE*************************
+			
+		    PreparedStatement prep = conn.prepareStatement("INSERT INTO newsletter (Utente_email, Genere_nome, Regione_id, Provincia_id, Comune_id, cadenza, dataProxEmail) VALUES(?, ?, ?, ?, ?, ?, ?)");
+		    prep.setString(1, newsletter.getUtente_email().getEmail());
+		    prep.setString(2, newsletter.getGenere_nome().);
+		    prep.setString(3, reportDate);
+		    
+		    prep.executeUpdate();
+		    conn.commit();
+			
+		    
+		    return_code = 0;
+		}finally {
+			try {
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
 			}
-				
-				
 		}
 		
-		catch(SQLException e) {
-			
-			e.printStackTrace();
-			
-		}
-		
-		return null;
+		*/
+		return return_code;
 		
 	}
-	@Override
-	public Newsletter getNewsletterbyGenere(Genere Genere_nome) {
-		// TODO Auto-generated method stub
-		
-		return null;
-	}
-	@Override
-	public Newsletter getNewsletterbyRegione(Regione Regione_nome) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Newsletter getNewletterbyProvincia(Provincia Provincia_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Newsletter getNewsletterbyComune(Comune Comune_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Newsletter signingtoNewsletter(String Utente_email, Genere Genere_nome, Regione Regione_nome,
-			Provincia Provincia_id, Comune Comune_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 
 }

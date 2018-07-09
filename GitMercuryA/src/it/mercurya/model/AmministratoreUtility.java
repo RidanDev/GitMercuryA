@@ -4,5 +4,4 @@ public interface AmministratoreUtility {
 	public Amministratore getAmministratoreByEmail(String email);
 	
 	
-
 }

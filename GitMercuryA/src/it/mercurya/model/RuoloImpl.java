@@ -7,22 +7,26 @@ import java.sql.SQLException;
 
 import it.mercurya.dao.Dao;
 
+
 public class RuoloImpl implements RuoloUtility {
 
-	private Connection conn = Dao.getConnection();
-	private PreparedStatement st;
-	private ResultSet rst;
-	Ruolo ruolo;
+
 
 	@Override
 	public Ruolo getRuoloByName(String nome) {
+		Connection conn = null;
+		Ruolo ruolo = null;
 		try {
-			st = conn.prepareStatement("select * from ruolo where nome=?");
+			conn = Dao.getConnection();
+			
+			PreparedStatement st = conn.prepareStatement("select * from ruolo where nome=?");
 			st.setString(1, nome);
-			rst = st.executeQuery();
-			rst.first();
-			ruolo=new Ruolo();
-			ruolo.setNome(rst.getString("nome"));
+			ResultSet rst = st.executeQuery();
+			
+			if(rst.first()){
+				ruolo=new Ruolo();
+				ruolo.setNome(rst.getString("nome"));
+			}
 			conn.commit();
 		}
 		catch (SQLException e) {
@@ -36,6 +40,7 @@ public class RuoloImpl implements RuoloUtility {
 				e.printStackTrace();
 			}
 		}
-	return ruolo;
+		
+		return ruolo;
 	}
 }

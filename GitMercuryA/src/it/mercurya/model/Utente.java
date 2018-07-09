@@ -3,7 +3,7 @@ package it.mercurya.model;
 public class Utente {
 	
 	private Ruolo Ruolo_nome;
-	public String email;
+	private String email;
 	
 	public Utente() {
 		

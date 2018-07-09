@@ -5,59 +5,44 @@ import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-
 public class Dao {
-	
-	private static Connection conn=null;
-	private static DataSource ds = null;
-	
-	private Dao() {
+		private static Connection conn = null;
+		private static DataSource ds = null;
 		
-		Context initCtx=null;
-		Context enxCtx=null;
-		
-		try {
-			
-			initCtx = new InitialContext();
-			enxCtx = (Context)initCtx.lookup("java:comp/env");
-			ds = (DataSource)enxCtx.lookup("jdbc/mydb");
-			
-		}
-		
-		catch (NamingException e) {
-			
-			e.printStackTrace();
-			
-		}
-		
-	}
-	
-	public static Connection getConnection() {
-		
-		if(ds==null) {
-			
-			new Dao();
-			
-		}
-		
-		try {
-			
-			conn=ds.getConnection();
-			
-		}catch (SQLException e) {
+		private Dao() {
 				
+			Context initCtx = null;
+			Context envCtx = null;
+			
+			try {
+				initCtx = new InitialContext();
+				envCtx = (Context)initCtx.lookup("java:comp/env");
+				
+				ds = (DataSource)envCtx.lookup("jdbc/mydb");
+				
+			}catch(Exception e) {
 				e.printStackTrace();
-				
+			}
+			
+		}
+		
+		
+		public static Connection getConnection() {
+			if(ds == null) {
+				new Dao();
+			}
+			
+			try {
+				conn = ds.getConnection();
+			}catch(SQLException e) {
+				e.printStackTrace();
 			}
 			
 			return conn;
-				
-	}	
-	
-
+			
+		}
+		
 }
-
 
