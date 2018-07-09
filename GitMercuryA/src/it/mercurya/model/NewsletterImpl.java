@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 import it.mercurya.dao.Dao;
 
@@ -43,9 +40,11 @@ public class NewsletterImpl implements NewsletterUtility{
 				
 				if(rs.getInt("Regione_id") != -1){ // allora sono inclusi automaticamente tutte le provincie e comuni di quella regione
 					c.setRegione_id(new RegioneImpl().getRegioneById(rs.getInt("Regione_id")));
-				}else if(rs.getInt("Provincia_id") != -1){ // allora sono inclusi automaticamente tutti i comuni di quella provincia
+				}
+				if(rs.getInt("Provincia_id") != -1){ // allora sono inclusi automaticamente tutti i comuni di quella provincia
 					c.setProvincia_id(new ProvinciaImpl().getProvinciaById(rs.getInt("Provincia_id")));
-				}else if(rs.getInt("comune_id") != -1){ // // allora solo quel comune interessa
+				}
+				if(rs.getInt("comune_id") != -1){ // // allora solo quel comune interessa
 					c.setComune_id(new ComuneImpl().getComuneById(rs.getInt("Comune_id")));
 				}// altrimenti se tutti sono uguali a -1, significa che non ci sono preferenze sulla zona
 				
@@ -75,28 +74,28 @@ public class NewsletterImpl implements NewsletterUtility{
 		Connection conn = null;
 		int return_code = -1; // 0=OK, -1=ERRORE, -2=utente già presente come ente/amministratore
 		
-		/*
+		
 		try {
 			conn = Dao.getConnection();
 			
 			Utente u = new UtenteImpl().getUtenteByEmail(newsletter.getUtente_email().getEmail());
-			
-			
-			}
-			
-			// ******************DA FINIRE*************************
-			
-		    PreparedStatement prep = conn.prepareStatement("INSERT INTO newsletter (Utente_email, Genere_nome, Regione_id, Provincia_id, Comune_id, cadenza, dataProxEmail) VALUES(?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement prep = conn.prepareStatement("INSERT INTO newsletter (Utente_email, Genere_nome, Regione_id, Provincia_id, Comune_id, cadenza, dataProxEmail) VALUES(?, ?, ?, ?, ?, ?, ?)");
 		    prep.setString(1, newsletter.getUtente_email().getEmail());
-		    prep.setString(2, newsletter.getGenere_nome().);
-		    prep.setString(3, reportDate);
-		    
+		    prep.setString(2, newsletter.getGenere_nome().getNome());
+		    prep.setInt(3, newsletter.getRegione_id().getId());
+		    prep.setInt(4, newsletter.getProvincia_id().getId());
+		    prep.setInt(5, newsletter.getComune_id().getId());
+		    prep.setString(6, newsletter.getCadenza());
+		    prep.setDate(7, newsletter.getDataProxEmail());
 		    prep.executeUpdate();
 		    conn.commit();
+			return_code=0;
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
 			
-		    
-		    return_code = 0;
-		}finally {
+			finally {
 			try {
 				conn.close();
 			}catch(SQLException e) {
@@ -104,9 +103,7 @@ public class NewsletterImpl implements NewsletterUtility{
 			}
 		}
 		
-		*/
 		return return_code;
 		
 	}
-
 }
