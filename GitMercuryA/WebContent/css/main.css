@@ -2,10 +2,9 @@
 .index{
 	
 	color:red;
-	font-size:4em;
-	
-	
+	font-size:4em;	
 }
+
 .mytab{
 	
 	width:;
@@ -93,7 +92,12 @@ body {
     }
 }
 
-
+select{
+    padding: 2px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
 
 @font-face {
     font-family: 'Fira Sans';

@@ -65,7 +65,7 @@
 	 				<li>Inserisci il luogo di interesse:</li>
 	 			</ol>
 	 				<div class="radio">
-	   					<select id="regione" name="regione" onchange="populateP()">
+	   					<select id="regione" name="regione" required onchange="populateP()">
 							<option>REGIONE</option>
 							<option value="valdaosta">Val d'Aosta</option>
 							<option value="piemonte">Piemonte</option>
@@ -88,10 +88,10 @@
 							<option value="sicilia">Sicilia</option>
 							<option value="sardegna">Sardegna</option>
 						</select>
-						<select id="provincia" name="provincia" onchange="populateC()">
+						<select id="provincia" name="provincia" required onchange="populateC()">
 							<option>PROVINCIA</option>
 						</select>
-						<select id="comune"	name="comune">
+						<select id="comune"	name="comune" required>
 							<option>COMUNE</option>
 						</select>
 					</div>
