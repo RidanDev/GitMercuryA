@@ -36,7 +36,7 @@ public class RegProvComController extends HttpServlet {
 			for (String element : provTosc)
 			{
 				
-				out.println("<option>"+element+"</prov>");
+				out.println("<option>"+element+"</option>");
 				
 			}
 		}
@@ -45,7 +45,7 @@ public class RegProvComController extends HttpServlet {
 					for (String element : provLig)
 					{
 						
-						out.println("<option>"+element+"</prov>");
+						out.println("<option>"+element+"</option>");
 						
 					}
 				}
@@ -54,7 +54,7 @@ public class RegProvComController extends HttpServlet {
 				for (String element : provMar)
 				{
 					
-					out.println("<option>"+element+"</prov>");
+					out.println("<option>"+element+"</option>");
 					
 				}
 			}

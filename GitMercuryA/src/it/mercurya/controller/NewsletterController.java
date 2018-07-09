@@ -18,6 +18,7 @@ import it.mercurya.model.ProvinciaImpl;
 
 /**
  * Servlet implementation class NewsletterController
+ * gianluca
  */
 @WebServlet("/NewsletterController")
 public class NewsletterController extends HttpServlet
