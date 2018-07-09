@@ -83,7 +83,7 @@
 		<div class="topnav">
 
 			<a href="index.jsp">Home</a>
-			<a href="view/ricerca.jsp">Cercaevento</a>
+			<a href="view/cercaEvento.jsp">Cercaevento</a>
 			<a href="view/regUtente.jsp">Iscriviti alla Newsletter</a> 
 			<a href="view/regEnte.jsp">Registrati come Ente</a> 
 			<a href="#login" id="	">Login</a>
