@@ -83,48 +83,49 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="column side" style="background-color: #aaa;">
 			<form>
 				<fieldset>
-					<legend>Choose event</legend>
+					<legend>Cerca evento</legend>
 					<div>
 						Scegli il tipo di evento:
 						<select>
-						<option>---Select---</option>
-						</select><br> <br> Regioni: <select id="regioni" name="regioni"
-							onchange="populate()">
+							<option>---Select---</option>
+						</select><br><br>
+						Regioni:
+						<select id="regioni" name="regioni"	onchange="populate()">
 							<option>---Select---</option>
 							<option value="toscana">toscana</option>
 							<option value="liguria">liguria</option>
 							<option value="marche">marche</option>
-						</select><br> <br> Province: <select id="province"
-							name="province">
+						</select><br><br>
+						Province:
+						<select id="province" name="province">
 							<option>---Select---</option>
-						</select><br> <br> Comuni: <select id="comuni" name="comuni">
+						</select><br><br>
+						Comuni: <select id="comuni" name="comuni">
 							<option>---Select---</option>
-						</select><br> <br> <label for="start">Start</label> <input
-							type="date" id="start" name="dataInizio" value="2018-07-22"
-							min="2018-01-01" max="2018-12-31" />
+						</select><br><br>
 					</div>
-
-					<div>
+						<label for="start">Start</label>
+						<input type="date" id="start" name="dataInizio" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+						<br><br>
 						<label for="end">End</label> <input type="date" id="end"
 							name="dataFine" value="2018-07-29" min="2018-01-01"
 							max="2018-12-31">
-					</div>
-
 				</fieldset>
-
-
-			</div>
-			<div class="column middle" style="background-color: #bbb;"></div>
-			<div class="column side" style="background-color: #ccc;"></div>
+			</form>
 		</div>
+		<div class="column middle" style="background-color: #bbb;"></div>
+		<div class="column side" style="background-color: #ccc;"></div>
+	</div>
 
-		<div class="footer">
-			<p>Footer</p>
-		</div>
-	</form>
+	<div class="footer">
+		<p>Footer</p>
+	</div>
+	
+<!-- 	https://www.w3schools.com/cssref/tryit.asp?filename=trycss_grid-row -->
 </body>
 </html>
