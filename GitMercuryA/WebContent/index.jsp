@@ -70,13 +70,7 @@
 <body>
 	<form>
 		<div class="header">
-
-			<img
-				src=https://thumbs.dreamstime.com/b/la-citt%C3%A0-italiana-chiama-il-collage-24386421.jpg
-				width="50%" height="50%">
 			<h2>Mercury</h2>
-
-
 		</div>
 
 
