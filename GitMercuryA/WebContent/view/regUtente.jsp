@@ -34,7 +34,7 @@ function populateP() {
 // 		if(valoreZona==null){
 // 			alert("Selezionare il luogo di interesse");
 // 			return false;
-// 		}
+// 		}a
 // 		if(document.regForm.luogoInteresse.value.equals("")|| 
 // 				document.regForm.luogoInteresse.value.equals("Inserire nome della località selezionata")){
 // 			alert("Scrivere la località di tuo interesse");

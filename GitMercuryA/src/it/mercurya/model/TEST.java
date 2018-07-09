@@ -1,11 +1,6 @@
 package it.mercurya.model;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -297,7 +292,7 @@ public class TEST extends HttpServlet {
 			else if(elist.get(i).getComune_id() != null)
 				System.out.println("Interessato agli eventi del comune: " + elist.get(i).getComune_id().getNome() + "(NON tutta la regione e NON tutta la provincia)");
 			else
-				System.out.println("Non c'è nessun filtro sul luogo: va bene qualsiasi zona");
+				System.out.println("Non c'ï¿½ nessun filtro sul luogo: va bene qualsiasi zona");
 			
 			System.out.println("Candenza: " + elist.get(i).getCadenza());
 			System.out.println("Data prossima email: " + elist.get(i).getDataProxEmail());
@@ -305,7 +300,7 @@ public class TEST extends HttpServlet {
 			System.out.println("________________________________________");
 		}
 		
-	}*/
+	}
 	
 	//TEST insertNewsletter
 	
@@ -346,11 +341,14 @@ public class TEST extends HttpServlet {
 			System.out.println("Inserimento NEWSLETTER non riuscito");
 		if(r==0)
 			System.out.println("Inserimento NEWSLETTER riuscito");
-	}
+	}*/
 	
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		test_insert_newsletter();
+		//test_insert_newsletter();
+		
 		
 		
 	}
