@@ -88,8 +88,8 @@ public class NewsletterImpl implements NewsletterUtility{
 		    prep.setString(6, newsletter.getCadenza());
 		    prep.setDate(7, newsletter.getDataProxEmail());
 		    prep.executeUpdate();
+		    return_code=0;
 		    conn.commit();
-			return_code=0;
 			}
 			catch(SQLException e) {
 				e.printStackTrace();

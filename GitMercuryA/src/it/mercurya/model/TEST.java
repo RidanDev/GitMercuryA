@@ -1,6 +1,7 @@
 package it.mercurya.model;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,7 +21,7 @@ public class TEST extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	
-	
+	/*
 	
 	void test_provincia_by_id(){
 		// TEST RICEZIONE DATI DA TABELLA PROVINCIA e REGIONE
@@ -304,11 +305,52 @@ public class TEST extends HttpServlet {
 			System.out.println("________________________________________");
 		}
 		
+	}*/
+	
+	//TEST insertNewsletter
+	
+	void test_insert_newsletter() {
+		NewsletterImpl ei = new NewsletterImpl();
+		RuoloImpl ri=new RuoloImpl();
+		Ruolo ruolo=ri.getRuoloByName("Ente");
+		Utente u=new Utente();
+		u.setEmail("vincenzo@gmail.com");
+		u.setRuolo_nome(ruolo);
+		UtenteImpl ui=new UtenteImpl();
+		int ua=ui.addUtente("vincenzo@gmail.com", ruolo);
+		Newsletter n=new Newsletter();
+		n.setUtente_email(u);
+		GenereImpl gi= new GenereImpl();
+		Genere g = gi.getGenereByName("film");
+		n.setGenere_nome(g);
+		RegioneImpl regi=new RegioneImpl();
+		Regione reg=regi.getRegioneById(3);
+		n.setRegione_id(reg);
+		ProvinciaImpl provi=new ProvinciaImpl();
+		Provincia prov=provi.getProvinciaById(12);
+		n.setProvincia_id(prov);
+		ComuneImpl ci=new ComuneImpl();
+		Comune c=ci.getComuneById(3006);
+		n.setComune_id(c);
+		n.setCadenza("Mensile");
+		java.sql.Date dataProxEmail=new java.sql.Date(3000);
+		n.setDataProxEmail(dataProxEmail);
+		System.out.println(dataProxEmail.toString());
+		int r=ei.insertNewsletter(n);
+		if(ua==-1) 
+			System.out.println("Inserimento UTENTE non riuscito");
+		if(ua==0)
+			System.out.println("Inserimento UTENTE riuscito");
+		
+		if(r==-1)
+			System.out.println("Inserimento NEWSLETTER non riuscito");
+		if(r==0)
+			System.out.println("Inserimento NEWSLETTER riuscito");
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		test_get_all_newsletter();
+		test_insert_newsletter();
 		
 		
 	}
