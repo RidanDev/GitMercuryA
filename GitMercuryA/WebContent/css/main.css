@@ -47,7 +47,7 @@ body {
 
 /* Style the header */
 .header {
-	background-image: url("Sfondo.jpg");
+/* 	background-image: url("Sfondo.jpg"); */
     padding: 30px;
     text-align: center;
     font-size: 50px;

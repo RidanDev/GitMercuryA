@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.ArrayList"%>
+<%@ page import="it.mercurya.model.Regione"%>
+<%@ page import="it.mercurya.model.Provincia"%>
+<%@ page import="it.mercurya.model.Comune"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,19 +12,19 @@
 <link rel="stylesheet" href="../css/form.css" type="text/css">
 <script type="text/javascript" language="javascript">
 
-// function populateP() {
-// 	var regione=document.getElementById('regione').value;
-// 	var httpRequest = new XMLHttpRequest();
-// 	httpRequest.open("GET", 'RegProvCom?rpc='+regione , true);
-// 	httpRequest.onload = function(){
-// 		if(this.status == 200){
-// 			document.getElementById('province').innerHTML = this.responseText;
-// 	 	}else if(this.status == 400){
-// 	 		  document.getElementById('contenuto').innerHTML = "Risorsa non trovata!";
-// 	 	}
-// 	 httpRequest.send();
-// 	 }
-// }
+function populateP() {
+	var regione=document.getElementById('regione').value;
+	var httpRequest = new XMLHttpRequest();
+	httpRequest.open("GET", 'RegProvCom?reg='+regione , true);
+	httpRequest.onload = function(){
+		if(this.status == 200){
+			ArrayList<Provincia> p=(ArrayList<Provincia>)session.getAttribute("prov");
+	 	}else if(this.status == 400){
+	 		  document.getElementById('contenuto').innerHTML = "Risorsa non trovata!";
+	 	}
+	 httpRequest.send();
+	 }
+}
 
 
 
@@ -67,32 +71,34 @@
 	 				<div class="radio">
 	   					<select id="regione" name="regione" required onchange="populateP()">
 							<option>REGIONE</option>
-							<option value="valdaosta">Val d'Aosta</option>
-							<option value="piemonte">Piemonte</option>
-							<option value="liguria">Liguria</option>
-							<option value="lombardia">Lombardia</option>
-							<option value="veneto">Veneto</option>
-							<option value="trentino">Trentino Alto Adige</option>
-							<option value="friuli">Friuli Venezia-Giulia</option>
-							<option value="emilia">Emilia-Romagna</option>
-							<option value="toscana">Toscana</option>
-							<option value="marche">Marche</option>
-							<option value="umbria">Umbria</option>
-							<option value="lazio">Lazio</option>
-							<option value="abruzzo">Abruzzo</option>
-							<option value="molise">Molise</option>
-							<option value="campania">Campania</option>
-							<option value="basilicata">Basilicata</option>
-							<option value="puglia">Puglia</option>
-							<option value="calabria">Calabria</option>
-							<option value="sicilia">Sicilia</option>
-							<option value="sardegna">Sardegna</option>
+ 							<% 
+ 								
+ 								ArrayList<Regione> r=(ArrayList<Regione>)session.getAttribute("reg");
+							  	if(r!=null)
+								for(int j=0; j<r.size(); j++) {
+ 						         	out.println("<option value='"+ r.get(j).getId()+"'>"+r.get(j).getNome()+"</option>");
+ 						    	 }
+ 						     %> 
 						</select>
 						<select id="provincia" name="provincia" required onchange="populateC()">
 							<option>PROVINCIA</option>
+ 							<%
+ 								ArrayList<Provincia> p=(ArrayList<Provincia>)session.getAttribute("prov");
+						  
+ 								for(int j=0; j<p.size(); j++) {
+ 						         	out.println("<option value='"+ p.get(j).getId()+"'>"+p.get(j).getNome()+"</option>");
+ 						    	 }
+ 						        %>
 						</select>
 						<select id="comune"	name="comune" required>
 							<option>COMUNE</option>
+ 							<% 
+ 								ArrayList<Comune> c=(ArrayList<Comune>)session.getAttribute("com");
+						  
+ 								for(int j=0; j<c.size(); j++) {
+ 						         	out.println("<option value='"+ c.get(j).getId()+"'>"+c.get(j).getNome()+"</option>");
+ 						    	 }
+ 						        %>
 						</select>
 					</div>
 				<ol start="2">
