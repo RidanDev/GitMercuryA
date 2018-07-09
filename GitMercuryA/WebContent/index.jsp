@@ -67,7 +67,7 @@
 </script>
 
 
-<body>
+<body bgcolor="black">
 	<form>
 		<div class="header">
 			<h2>Mercury</h2>
