@@ -83,7 +83,7 @@ public class ComuneImpl implements ComuneUtility {
 	}
 
 	@Override
-	public ArrayList<Comune> getAllComuniByProvincia(String nome_provincia) {
+	public ArrayList<Comune> getAllComuniByProvincia(int id_provincia) {
 		Connection conn = null;
 		ArrayList<Comune> clist = new ArrayList<Comune>();
 		try {
@@ -91,7 +91,7 @@ public class ComuneImpl implements ComuneUtility {
 			
 			// Qua proviamo una query:
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from comune, provincia where comune.Provincia_id=Provincia.id AND Provincia.nome=\"" + nome_provincia + "\"");
+			ResultSet rs = st.executeQuery("select * from comune where comune.Provincia_id="+id_provincia);
 			while (rs.next()) {
 				Comune c = new Comune();
 				c.setId(rs.getInt("id"));

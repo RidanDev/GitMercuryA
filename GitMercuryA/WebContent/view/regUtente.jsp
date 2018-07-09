@@ -58,7 +58,7 @@
 	</div>
 	
 	<div class="form">
-		<form method="post" action="../TestNewsletter" name="iscrizione" style="padding: 40px 100px;">
+		<form method="post" action="../NewsletterController" name="iscrizione" style="padding: 40px 100px;">
 			<fieldset>
 				<legend>Iscriviti alla Newsletter</legend>
 				<ol style="padding-left: 40px; ">
@@ -67,8 +67,8 @@
 	 				<div class="radio">
 	   					<select id="regione" name="regione" required onchange="populateP()">
 							<option>REGIONE</option>
-							<option value="valdaosta">Val d'Aosta</option>
-							<option value="piemonte">Piemonte</option>
+							<option value="2">Val d'Aosta</option>
+							<option value="1">Piemonte</option>
 							<option value="liguria">Liguria</option>
 							<option value="lombardia">Lombardia</option>
 							<option value="veneto">Veneto</option>
@@ -90,6 +90,7 @@
 						</select>
 						<select id="provincia" name="provincia" required onchange="populateC()">
 							<option>PROVINCIA</option>
+							<option value="1">Torino</option>
 						</select>
 						<select id="comune"	name="comune" required>
 							<option>COMUNE</option>

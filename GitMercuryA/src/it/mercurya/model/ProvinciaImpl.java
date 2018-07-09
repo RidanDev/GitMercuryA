@@ -91,7 +91,7 @@ public class ProvinciaImpl implements ProvinciaUtility{
 	}
 
 	@Override
-	public ArrayList<Provincia> getAllProvincieByNomeRegione(String nome_regione) {
+	public ArrayList<Provincia> getAllProvincieByIdRegione(int id_regione) {
 		Connection conn = null;
 		ArrayList<Provincia> plist = new ArrayList<Provincia>();
 		try {
@@ -99,7 +99,7 @@ public class ProvinciaImpl implements ProvinciaUtility{
 			
 			// Qua proviamo una query:
 			Statement st = conn.createStatement();
-			ResultSet rs = st.executeQuery("select * from provincia, regione where provincia.Regione_id=Regione.id AND Regione.nome=\"" + nome_regione + "\"");
+			ResultSet rs = st.executeQuery("select * from provincia where provincia.Regione_id="+id_regione);
 			while (rs.next()) {
 				Provincia p = new Provincia();
 				p.setId(rs.getInt("id"));
