@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <script type="text/javascript">
 	function populate() {
@@ -71,17 +74,20 @@
 		<a href="index.jsp">Home</a>
 		<a href="view/regUtente.jsp">Iscriviti alla Newsletter</a> 
 		<a href="view/regEnte.jsp">Registrati come Ente</a> 
-		<a href="#login" id="	">Login</a>
-		<div id="myModal" class="modal">
+		<a href="#login" id="	" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Login</a>
+		
+		
+  
+<!-- 		<div id="myModal" class="modal"> -->
 
-			<!-- Modal content -->
-			<div class="modal-content">
-				<span class="close">&times;</span>
-				Email:<input type="text" name="email"><br> 
-				Password:<input type="password"	name="password"><br>
-				<input type="submit" name="Accedi">
-			</div>
-		</div>
+<!-- 			<!-- Modal content --> -->
+<!-- 			<div class="modal-content"> -->
+<!-- 				<span class="close">&times;</span> -->
+<!-- 				Email:<input type="text" name="email"><br>  -->
+<!-- 				Password:<input type="password"	name="password"><br> -->
+<!-- 				<input type="submit" name="Accedi"> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 	
 	<div class="row">
@@ -122,9 +128,7 @@
 		<div class="column side" style="background-color: #ccc;"></div>
 	</div>
 
-	<div class="footer">
-		<p>Footer</p>
-	</div>
+	
 	
 <!--    https://www.w3schools.com/cssref/tryit.asp?filename=trycss_grid-row -->
 </body>
