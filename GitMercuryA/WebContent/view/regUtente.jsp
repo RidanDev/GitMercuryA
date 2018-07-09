@@ -52,8 +52,7 @@
   	
 	<div class="topnav">
 		<a href="../index.jsp">Home</a>
-		<a href="cercaEvento.jsp">Cerca evento</a> 
-		<a chref="regUtente.jsp">Iscriviti alla Newsletter</a> 
+		<a href="regUtente.jsp">Iscriviti alla Newsletter</a> 
 		<a href="regEnte.jsp">Registrati come Ente</a> 
 		<a href="login.jsp">Accedi</a> 
 	</div>
@@ -113,7 +112,7 @@
     				<li>Con quale cadenza vuoi ricevere le email?</li>
     			</ol>	
     				<div class="radio">
-						<input type="radio" name="cadenza" value="settimanale">Settimanale &emsp;
+						<input type="radio" name="cadenza" value="settimanale" checked>Settimanale &emsp;
 						<input type="radio" name="cadenza" value="mensile">Mensile &emsp;
 						<input type="radio" name="cadenza" value="annuale">Annuale &emsp;
 					</div>

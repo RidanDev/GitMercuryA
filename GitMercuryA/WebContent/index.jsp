@@ -4,14 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <link rel="stylesheet" href="css/main.css" type="text/css">
-<title>Insert title here</title>
-</head>
-
-
-
-
 <script type="text/javascript">
 	function populate() {
 
@@ -66,44 +59,39 @@
 	}
 </script>
 
-
+<title>Home</title>
+</head>
 <body bgcolor="black">
-	<form>
-		<div class="header">
-			<h2>Mercury</h2>
-		</div>
+	
+	<div class="header">
+		<h2>Mercury</h2>
+	</div>
 
+	<div class="topnav">
+		<a href="index.jsp">Home</a>
+		<a href="view/regUtente.jsp">Iscriviti alla Newsletter</a> 
+		<a href="view/regEnte.jsp">Registrati come Ente</a> 
+		<a href="#login" id="	">Login</a>
+		<div id="myModal" class="modal">
 
-		<div class="topnav">
-
-			<a href="index.jsp">Home</a>
-			<a href="view/cercaEvento.jsp">Cercaevento</a>
-			<a href="view/regUtente.jsp">Iscriviti alla Newsletter</a> 
-			<a href="view/regEnte.jsp">Registrati come Ente</a> 
-			<a href="#login" id="	">Login</a>
-			<div id="myModal" class="modal">
-
-				<!-- Modal content -->
-				<div class="modal-content">
-					<span class="close">&times;</span> Email:<input type="text"
-						name="email"><br> Password:<input type="text"
-						name="password"><br> <input type="submit"
-						name="LOGIN">
-				</div>
-
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				Email:<input type="text" name="email"><br> 
+				Password:<input type="password"	name="password"><br>
+				<input type="submit" name="Accedi">
 			</div>
-
 		</div>
-		<br> <br>
-
-
-		<div class="row">
-			<div class="column side" style="background-color: #aaa;">
+	</div>
+	<div class="row">
+		<div class="column side" style="background-color: #aaa;">
+			<form>
 				<fieldset>
 					<legend>Choose event</legend>
 					<div>
-						Scegli il tipo di evento: <select>
-							<option>---Select---</option>
+						Scegli il tipo di evento:
+						<select>
+						<option>---Select---</option>
 						</select><br> <br> Regioni: <select id="regioni" name="regioni"
 							onchange="populate()">
 							<option>---Select---</option>
