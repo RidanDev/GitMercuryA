@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/RegProvCom")
-public class RegProvCom extends HttpServlet {
+public class RegProvComController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
