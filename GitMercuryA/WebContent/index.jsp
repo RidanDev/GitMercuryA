@@ -9,8 +9,15 @@
 
 
 <link rel="stylesheet" href="css/main.css" type="text/css">
+<script>
+// If user clicks anywhere outside of the modal, Modal will close
 
-<script type="text/javascript">
+var modal = document.getElementById('bottoneLogin');
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 
 	function populate() {
@@ -89,27 +96,28 @@ window.onclick = function(event) {
 			} else{
 					out.println("<a href='view/regUtente.jsp'>Iscriviti alla Newsletter</a>"); 
 					out.println("<a href='view/regEnte.jsp'>Registrati come Ente</a>");
-				}	
+			}	
 		%>
-		<a href="#Login" id="myBtn">Login</a>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <input type="text" >
-    <input type="password">
-  </div>
-
-
-
-</div>
+		<button class="logBut"onclick="document.getElementById('bottoneLogin').style.display='block'">Login</button>
 	</div>
 	
-	<div class="row">
-		<div class="column side" style="background-color: #aaa;">
+	<div id="bottoneLogin" class="modal">
+  
+  		<form class="modal-content animate" action="../......" method="post">
+    		<div class="imgcontainer">
+      			<span onclick="document.getElementById('bottoneLogin').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      			<h1 style="text-align:center">Inserisci le tue credenziali</h1>
+    		</div>
+
+    		<div class="container">
+      			<input type="text" placeholder="Email.." name="uname">
+      			<input type="password" placeholder="Password.." name="psw">        
+      			<button class="formLog" type="submit">Login</button>
+    		</div>
+  		</form>
+	</div>
+	<div class="row"  >
+		<div class="column side"  style="background-color: #aaa;">
 			<form>
 				<fieldset>
 					<legend style="font-weight: bold;">Cerca evento</legend>
@@ -138,10 +146,12 @@ window.onclick = function(event) {
 						<br><br>
 						Fine evento:
 						<input type="date" id="end"	name="dataFine" value="2018-07-29" min="2018-01-01"	max="2018-12-31">
+						<br>
+						<input type="submit" name="Cerca" value="Cerca">
 				</fieldset>
 			</form>
 		</div>
-		<div class="column middle" style="background-color: #bbb;">
+		<div class="column middle" class="col-container" style="background-color: #bbb;">
 			<div class="eventi">
 				<div class="item2">evento 1</div>
 	  			<div class="item3">evento 2</div>  
@@ -151,7 +161,7 @@ window.onclick = function(event) {
   				<div class="item7">evento 6</div>
 			</div>
 		</div>
-		<div class="column side" style="background-color: #ccc;"></div>
+		<div class="column side" class="col-container" style="background-color: #ccc;"></div>
 	</div>
 
 	

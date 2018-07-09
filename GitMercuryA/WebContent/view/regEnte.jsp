@@ -9,20 +9,11 @@
 <script type="text/javascript" language="javascript">
 	
 	function validaInvio(){
-		if(valoreZona==null){
-			alert("Selezionare il luogo di interesse");
+		if(document.regForm.pIva.value){
+			alert{"la p.Iva deve essere un numero di 11 cifre"};
 			return false;
 		}
-		if(document.regForm.luogoInteresse.value.equals("")|| 
-				document.regForm.luogoInteresse.value.equals("Inserire nome della località selezionata")){
-			alert("Scrivere la località di tuo interesse");
-			return false;
-		}
-		if(valoreCadenza==null) {
-			alert("Selezionare quando ricevere le email");
-			return false;
-			}
-		return false;
+		return true;
 	}
 </script>
 <title>Registrazione Utente</title>

@@ -70,33 +70,33 @@ function populateP() {
 	 			</ol>
 	 				<div class="radio">
 	   					<select id="regione" name="regione" required onchange="populateP()">
-							<option>REGIONE</option>
+							<option value="">REGIONE</option>
  							<% 
  								
  								ArrayList<Regione> r=(ArrayList<Regione>)session.getAttribute("reg");
-							  	if(r!=null)
-								for(int j=0; j<r.size(); j++) {
- 						         	out.println("<option value='"+ r.get(j).getId()+"'>"+r.get(j).getNome()+"</option>");
+							  	if(r!=null){
+									for(int j=0; j<r.size(); j++) 
+ 						         		out.println("<option value='"+ r.get(j).getId()+"'>"+r.get(j).getNome()+"</option>");
  						    	 }
  						     %> 
 						</select>
 						<select id="provincia" name="provincia" required onchange="populateC()">
-							<option>PROVINCIA</option>
+							<option value="">PROVINCIA</option>
  							<%
  								ArrayList<Provincia> p=(ArrayList<Provincia>)session.getAttribute("prov");
-						  
- 								for(int j=0; j<p.size(); j++) {
- 						         	out.println("<option value='"+ p.get(j).getId()+"'>"+p.get(j).getNome()+"</option>");
+						  		if(p!=null){
+ 									for(int j=0; j<p.size(); j++) 
+ 						         		out.println("<option value='"+ p.get(j).getId()+"'>"+p.get(j).getNome()+"</option>");
  						    	 }
  						        %>
 						</select>
 						<select id="comune"	name="comune" required>
-							<option>COMUNE</option>
+							<option value="">COMUNE</option>
  							<% 
  								ArrayList<Comune> c=(ArrayList<Comune>)session.getAttribute("com");
-						  
- 								for(int j=0; j<c.size(); j++) {
- 						         	out.println("<option value='"+ c.get(j).getId()+"'>"+c.get(j).getNome()+"</option>");
+						  		if(c!=null){
+ 									for(int j=0; j<c.size(); j++)
+ 						         		out.println("<option value='"+ c.get(j).getId()+"'>"+c.get(j).getNome()+"</option>");
  						    	 }
  						        %>
 						</select>
