@@ -54,7 +54,7 @@
 					out.println("<a href='view/regEnte.jsp'>Registrati come Ente</a>");
 					out.println("<button class='logBut' onclick=\"document.getElementById('bottoneLogin').style.display='block'\"> Login </button>");
 			}	
-		%>
+		%>  
 	</div>
 	
 	<div id="bottoneLogin" class="modal">
