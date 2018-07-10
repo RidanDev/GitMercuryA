@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="it.mercurya.model.Ruolo"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.mercurya.model.Evento"%>
+<%@ page import="it.mercurya.model.Comune"%>
+<%@ page import="it.mercurya.model.Provincia"%>
+<%@ page import="it.mercurya.model.Regione"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -110,25 +116,45 @@
 		</div>
 		<div class="column middle" class="col-container" style="background-color: #bbb;">
 			<div class="eventi">
+			
+			
 			<%
 					
+			ArrayList<Evento> elist = (ArrayList<Evento>)session.getAttribute("lista_eventi_non_scaduti");
 			
 			
+			
+			for(int i=0;i<elist.size();i++){
+				out.println("<div class=\"eventi1\"><div>");
+				out.println("<b>" + elist.get(i).getNome() + "</b><br>");
+				out.println("Dal: " + elist.get(i).getInizio() + " ");
+				out.println("Al: " + elist.get(i).getFine() + "<br>");
+				/////
+				out.println("Genere evento: " + elist.get(i).getGenere_nome().getNome() + "<br>");
+				/////
+				out.println("Publicato da: " + elist.get(i).getEnte_Utente_email().getNome() + "<br>");
+				out.println("Email: " + elist.get(i).getEnte_Utente_email().getEmail() + " | ");
+				out.println("Telefono: " + elist.get(i).getEnte_Utente_email().getTelefono() + "<br>");
+				/////
+				Comune c = elist.get(i).getComune_id();
+				//out.println("ID comune: " + c.getId() + "<br>");
+				out.println("Comune: " +c.getNome() + " | ");
+				
+				Provincia p = c.getProvincia_id();
+				//out.println("ID provincia: " + p.getId() + "<br>");
+				out.println("Provincia: " + p.getNome() + " | ");
+				
+				Regione r = p.getRegione_id();
+				//out.println("ID regione: " + r.getId() + "<br>");
+				out.println("Regione: " + r.getNome() + "<br>");
+				/////
+				//out.println("Abilitato: " + elist.get(i).isEnabled() + "<br>");
+				
+				out.println("</div></div><hr>");
+			}
 			
 			%>
-				<div class="evento1">
-					<div>
-						Nome:<br>
-						Genere: <br>
-						Data inizio evente: <br>
-						Data fine evento: <br>
-						Comune:<br>
-					</div>
-				</div>
-	  			<div class="evento2">evento 2</div>  
-  				<div class="evento3">evento 3</div>
-  				<div class="evento4">evento 4</div>
-  				<div class="evento5">evento 5</div>
+			
 			</div>
 		</div>
 		<div class="column side" class="col-container" style="background-color: #ccc;"></div>

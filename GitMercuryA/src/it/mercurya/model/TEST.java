@@ -266,9 +266,9 @@ public class TEST extends HttpServlet {
 		}
 	}
 	
-	void test_eventi_non_scaduti(){
+	void test_eventi_non_scaduti(boolean solo_eventi_abilitati){
 		EventoImpl ei = new EventoImpl();
-		ArrayList<Evento> elist = ei.getEventiNonScaduti();
+		ArrayList<Evento> elist = ei.getEventiNonScaduti(solo_eventi_abilitati);
 	
 		if(elist.size()>0){
 			for(int i=0;i<elist.size();i++){
@@ -348,12 +348,15 @@ public class TEST extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		try {
-			test_add_evento();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+		// se passi TRUE stampa solo eventi non scaduti e eventi abilitati
+		test_eventi_non_scaduti(true);
+		
+		System.out.println("-------");
+		
+		// se passi FALSE stampa eventi non scaduti indifferentemente da abilitati o meno
+		test_eventi_non_scaduti(false);
+			
 		
 		
 	}

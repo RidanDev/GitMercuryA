@@ -156,8 +156,11 @@ public class EventoImpl implements EventoUtility {
 	}
 
 	@Override
-	public ArrayList<Evento> getEventiNonScaduti() {
-		return getEventiByCustomQuery("SELECT * FROM evento WHERE CURDATE()<=fine");
+	public ArrayList<Evento> getEventiNonScaduti(boolean solo_eventi_abilitati) {
+		if(solo_eventi_abilitati == true)
+			return getEventiByCustomQuery("SELECT * FROM evento WHERE CURDATE()<=fine AND isEnabled="+1);
+		else
+			return getEventiByCustomQuery("SELECT * FROM evento WHERE CURDATE()<=fine");
 	}
 
 	@Override
