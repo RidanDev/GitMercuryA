@@ -5,74 +5,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-
-
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <script>
-// If user clicks anywhere outside of the modal, Modal will close
-
-var modal = document.getElementById('bottoneLogin');
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
+	var modal = document.getElementById('bottoneLogin');
+	window.onclick = function(event) {
+    	if (event.target == modal) {
+        	modal.style.display = "none";
+    	}
+	}
 
 	function populate() {
-
 		var regione = document.getElementById('regioni').value;
-
 		var ajax = new XMLHttpRequest();
-
 		ajax.open('GET', 'RegProvCom?reg=' + regione, true);
-
 		ajax.onload = function() {
-
 			if (this.status == 200) {
-
 				document.getElementById('province').innerHTML = this.responseText;
-
 			} else if (this.status == 400) {
-
 			}
-
 		}
-
 		ajax.send();
-
 	}
 </script>
-
-<script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
-
 <title>Home</title>
 </head>
 <body bgcolor="black">
@@ -88,17 +42,19 @@ window.onclick = function(event) {
 			if(ruolo!=null){
 				if(ruolo.getNome().equals("Ente")){
 					out.println("<a href='view/creaEvento.jsp'>Crea evento</a>");
-					out.println("'<a href='view/mieiEventi.jsp'>I miei eventi</a>'"); 
+					out.println("'<a href='view/mieiEventi.jsp'>I miei eventi</a>'");
+					out.println("<button class='logBut' onclick=...> Logout </button>");
 				}
 				else if(ruolo.getNome().equals("Amministratore")){
 					out.println("<a href='view/listaEnti.jsp'>Enti registrati</a>");
+					out.println("<button class='logBut' onclick=...> Logout </button>");
 				}
 			} else{
 					out.println("<a href='view/regUtente.jsp'>Iscriviti alla Newsletter</a>"); 
 					out.println("<a href='view/regEnte.jsp'>Registrati come Ente</a>");
+					out.println("<button class='logBut' onclick=\"document.getElementById('bottoneLogin').style.display='block'\"> Login </button>");
 			}	
 		%>
-		<button class="logBut"onclick="document.getElementById('bottoneLogin').style.display='block'">Login</button>
 	</div>
 	
 	<div id="bottoneLogin" class="modal">
@@ -154,12 +110,25 @@ window.onclick = function(event) {
 		</div>
 		<div class="column middle" class="col-container" style="background-color: #bbb;">
 			<div class="eventi">
-				<div class="item2">evento 1</div>
-	  			<div class="item3">evento 2</div>  
-  				<div class="item4">evento 3</div>
-  				<div class="item5">evento 4</div>
-  				<div class="item6">evento 5</div>
-  				<div class="item7">evento 6</div>
+			<%
+					
+			
+			
+			
+			%>
+				<div class="evento1">
+					<div>
+						Nome:<br>
+						Genere: <br>
+						Data inizio evente: <br>
+						Data fine evento: <br>
+						Comune:<br>
+					</div>
+				</div>
+	  			<div class="evento2">evento 2</div>  
+  				<div class="evento3">evento 3</div>
+  				<div class="evento4">evento 4</div>
+  				<div class="evento5">evento 5</div>
 			</div>
 		</div>
 		<div class="column side" class="col-container" style="background-color: #ccc;"></div>
