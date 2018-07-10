@@ -1,6 +1,8 @@
 package it.mercurya.model;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -156,6 +158,51 @@ public class EventoImpl implements EventoUtility {
 	@Override
 	public ArrayList<Evento> getEventiNonScaduti() {
 		return getEventiByCustomQuery("SELECT * FROM evento WHERE CURDATE()<=fine");
+	}
+
+	@Override
+	public int addEvento(String nome, Date inizio, Date fine, String Genere_nome, String Ente_Utente_email, int Comune_id) {
+		Connection conn = null;
+		int return_code = -1; // 0=OK, -1=ERRORE, -2=l'indirizzo email inserito non coincide con alcun ente
+		
+		
+		try {
+			conn = Dao.getConnection();
+			
+			EnteImpl ei = new EnteImpl();
+			if(ei.getEnteByEmail(Ente_Utente_email) == null){
+				return_code = -2; // non è stato trovato nessun ente con questa e-mail-> ritorna -2
+			}else{
+				
+				PreparedStatement prep = conn.prepareStatement("INSERT INTO evento (nome, inizio, fine, Genere_nome, Ente_Utente_email, isEnabled, Comune_id) VALUES(?, ?, ?, ?, ?, ?, ?)");
+			    prep.setString(1, nome);
+			    prep.setDate(2, inizio);
+			    prep.setDate(3, fine);
+			    prep.setString(4, Genere_nome);
+			    prep.setString(5, Ente_Utente_email);
+			    prep.setBoolean(6, true);
+			    prep.setInt(7, Comune_id);
+			    
+			    prep.executeUpdate();
+			    conn.commit();
+				
+			    
+			    return_code = 0;	
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return return_code;
 	}
 	
 }

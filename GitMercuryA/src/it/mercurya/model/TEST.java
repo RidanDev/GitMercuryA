@@ -326,12 +326,30 @@ public class TEST extends HttpServlet {
 		
 		
 	}
-	
+	 
+	void test_add_evento() throws ParseException {
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		java.sql.Date inizio = new java.sql.Date(df.parse("2018-07-10").getTime());
+		java.sql.Date fine = new java.sql.Date(df.parse("2018-08-10").getTime());
+		
+		EventoImpl ei= new EventoImpl();
+		int result = ei.addEvento("corso java", inizio , fine, "mostra", "ProLocoLombardia@gmail.com", 1006);
+		
+		if(result == 0){
+			System.out.println("Inserito correttamente l'evento");
+		}else if(result == -2){
+			System.out.println("Non è stato trovato nessun ente con questa e-mail");
+		}else{
+			System.out.println("Errore nell'inserimento (probabilmente già esiste)");
+		}
+	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			test_insert_newsletter();
+			test_add_evento();
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
