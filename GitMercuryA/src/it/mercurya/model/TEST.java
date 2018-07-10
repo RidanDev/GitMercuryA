@@ -1,6 +1,10 @@
 package it.mercurya.model;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +20,7 @@ public class TEST extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	
-	/*
+	
 	
 	void test_provincia_by_id(){
 		// TEST RICEZIONE DATI DA TABELLA PROVINCIA e REGIONE
@@ -68,7 +72,7 @@ public class TEST extends HttpServlet {
 				
 		System.out.println("**************************************** PROVINCIE DEL LAZIO");
 		// tutte le regioni
-		ArrayList<Provincia> listProvicie = pi.getAllProvincieByNomeRegione("Lazio");
+		ArrayList<Provincia> listProvicie = pi.getAllProvincieByIdRegione(12);
 	
 		for(int i=0;i<listProvicie.size();i++){
 			System.out.println("ID REGIONE: " + listProvicie.get(i).getId());
@@ -292,7 +296,7 @@ public class TEST extends HttpServlet {
 			else if(elist.get(i).getComune_id() != null)
 				System.out.println("Interessato agli eventi del comune: " + elist.get(i).getComune_id().getNome() + "(NON tutta la regione e NON tutta la provincia)");
 			else
-				System.out.println("Non c'ï¿½ nessun filtro sul luogo: va bene qualsiasi zona");
+				System.out.println("Non c'è nessun filtro sul luogo: va bene qualsiasi zona");
 			
 			System.out.println("Candenza: " + elist.get(i).getCadenza());
 			System.out.println("Data prossima email: " + elist.get(i).getDataProxEmail());
@@ -302,53 +306,36 @@ public class TEST extends HttpServlet {
 		
 	}
 	
-	//TEST insertNewsletter
-	
-	void test_insert_newsletter() {
-		NewsletterImpl ei = new NewsletterImpl();
-		RuoloImpl ri=new RuoloImpl();
-		Ruolo ruolo=ri.getRuoloByName("Ente");
-		Utente u=new Utente();
-		u.setEmail("vincenzo@gmail.com");
-		u.setRuolo_nome(ruolo);
-		UtenteImpl ui=new UtenteImpl();
-		int ua=ui.addUtente("vincenzo@gmail.com", ruolo);
-		Newsletter n=new Newsletter();
-		n.setUtente_email(u);
-		GenereImpl gi= new GenereImpl();
-		Genere g = gi.getGenereByName("film");
-		n.setGenere_nome(g);
-		RegioneImpl regi=new RegioneImpl();
-		Regione reg=regi.getRegioneById(3);
-		n.setRegione_id(reg);
-		ProvinciaImpl provi=new ProvinciaImpl();
-		Provincia prov=provi.getProvinciaById(12);
-		n.setProvincia_id(prov);
-		ComuneImpl ci=new ComuneImpl();
-		Comune c=ci.getComuneById(3006);
-		n.setComune_id(c);
-		n.setCadenza("Mensile");
-		java.sql.Date dataProxEmail=new java.sql.Date(3000);
-		n.setDataProxEmail(dataProxEmail);
-		System.out.println(dataProxEmail.toString());
-		int r=ei.insertNewsletter(n);
-		if(ua==-1) 
-			System.out.println("Inserimento UTENTE non riuscito");
-		if(ua==0)
-			System.out.println("Inserimento UTENTE riuscito");
+	void test_insert_newsletter() throws ParseException{
 		
-		if(r==-1)
-			System.out.println("Inserimento NEWSLETTER non riuscito");
-		if(r==0)
-			System.out.println("Inserimento NEWSLETTER riuscito");
-	}*/
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		java.sql.Date dataProxEmail = new java.sql.Date(df.parse("2018-07-25").getTime());
+		
+		NewsletterImpl ni = new NewsletterImpl();
+		
+		
+		int result = ni.insertNewsletter("abcd@abcd.com", "film", -1, 98, -1, 7, dataProxEmail);
+		
+		if(result == 0){
+			System.out.println("Inserito correttamente nella newsletter");
+		}else if(result == -2){
+			System.out.println("Questa email è già associata a un ente/amministratore, quindi non puoi iscriverti alla newsletter");
+		}else{
+			System.out.println("Errore nell'inserimento, probabilmente questa preferenza è già presente nel DB");
+		}
+		
+		
+	}
 	
 	
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//test_insert_newsletter();
-		
+		try {
+			test_insert_newsletter();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}

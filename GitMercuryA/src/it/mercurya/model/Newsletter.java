@@ -6,7 +6,7 @@ class Newsletter {
 	private Regione Regione_id;
 	private Provincia Provincia_id;
 	private Comune Comune_id;
-	private String cadenza;
+	private int cadenza;
 	private java.sql.Date dataProxEmail;
 	
 	public Newsletter(){
@@ -46,10 +46,10 @@ class Newsletter {
 	public void setComune_id(Comune comune_id) {
 		Comune_id = comune_id;
 	}
-	public String getCadenza() {
+	public int getCadenza() {
 		return cadenza;
 	}
-	public void setCadenza(String cadenza) {
+	public void setCadenza(int cadenza) {
 		this.cadenza = cadenza;
 	}
 	public java.sql.Date getDataProxEmail() {
