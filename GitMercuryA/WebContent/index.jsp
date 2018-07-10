@@ -141,6 +141,7 @@ window.onclick = function(event) {
 							<option></option>
 						</select><br><br>
 					</div>
+					<!-- ciao -->
 						Inizio evento:
 						<input type="date" id="start" name="dataInizio" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
 						<br><br>
