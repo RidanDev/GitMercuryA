@@ -161,17 +161,20 @@ public class EventoImpl implements EventoUtility {
 	}
 
 	@Override
-	public int addEvento(String nome, Date inizio, Date fine, String Genere_nome, String Ente_Utente_email,
-			int Comune_id) {
+	public int addEvento(String nome, Date inizio, Date fine, String Genere_nome, String Ente_Utente_email, int Comune_id) {
 		Connection conn = null;
-		int return_code = -1; // 0=OK, -1=ERRORE, -2=utente già presente come ente/amministratore
+		int return_code = -1; // 0=OK, -1=ERRORE, -2=l'indirizzo email inserito non coincide con alcun ente
 		
-		boolean posso_inserire = false; // posso inserire solamente se non ci sono enti/amministratori con quella email
 		
 		try {
 			conn = Dao.getConnection();
 			
-			 PreparedStatement prep = conn.prepareStatement("INSERT INTO evento (nome, inizio, fine, Genere_nome, Ente_Utente_email, isEnabled, Comune_id) VALUES(?, ?, ?, ?, ?, ?, ?)");
+			EnteImpl ei = new EnteImpl();
+			if(ei.getEnteByEmail(Ente_Utente_email) == null){
+				return_code = -2; // non è stato trovato nessun ente con questa e-mail-> ritorna -2
+			}else{
+			
+				PreparedStatement prep = conn.prepareStatement("INSERT INTO evento (nome, inizio, fine, Genere_nome, Ente_Utente_email, isEnabled, Comune_id) VALUES(?, ?, ?, ?, ?, ?, ?)");
 			    prep.setString(1, nome);
 			    prep.setDate(2, inizio);
 			    prep.setDate(3, fine);
@@ -184,7 +187,8 @@ public class EventoImpl implements EventoUtility {
 			    conn.commit();
 				
 			    
-			    return_code = 0;			
+			    return_code = 0;	
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

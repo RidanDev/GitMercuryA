@@ -335,12 +335,14 @@ public class TEST extends HttpServlet {
 		java.sql.Date fine = new java.sql.Date(df.parse("2018-08-10").getTime());
 		
 		EventoImpl ei= new EventoImpl();
-		int result = ei.addEvento("corso java", inizio , fine, "mostra", "ProLocoLiguria@gmail.com", 1006);
+		int result = ei.addEvento("corso java", inizio , fine, "mostra", "ProLocoLombardia@gmail.com", 1006);
 		
 		if(result == 0){
 			System.out.println("Inserito correttamente l'evento");
-		}else {
-			System.out.println("Errore nell'inserimento");
+		}else if(result == -2){
+			System.out.println("Non è stato trovato nessun ente con questa e-mail");
+		}else{
+			System.out.println("Errore nell'inserimento (probabilmente già esiste)");
 		}
 	}
 	
