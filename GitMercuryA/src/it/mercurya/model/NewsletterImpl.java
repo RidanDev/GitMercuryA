@@ -1,4 +1,3 @@
-
 package it.mercurya.model;
 
 import java.sql.Connection;
