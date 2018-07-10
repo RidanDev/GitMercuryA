@@ -173,7 +173,7 @@ public class EventoImpl implements EventoUtility {
 			if(ei.getEnteByEmail(Ente_Utente_email) == null){
 				return_code = -2; // non è stato trovato nessun ente con questa e-mail-> ritorna -2
 			}else{
-			
+				
 				PreparedStatement prep = conn.prepareStatement("INSERT INTO evento (nome, inizio, fine, Genere_nome, Ente_Utente_email, isEnabled, Comune_id) VALUES(?, ?, ?, ?, ?, ?, ?)");
 			    prep.setString(1, nome);
 			    prep.setDate(2, inizio);
