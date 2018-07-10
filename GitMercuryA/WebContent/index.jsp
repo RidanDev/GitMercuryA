@@ -28,7 +28,7 @@
 	}
 </script>
 <title>Home</title>
-</head>
+</head>   
 <body bgcolor="black">
 	
 	<div class="header">
