@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import it.mercurya.model.Evento;
 import it.mercurya.model.EventoImpl;
+import it.mercurya.model.RegioneImpl;
 
 /**
  * Servlet implementation class IndexController
@@ -40,7 +41,7 @@ public class IndexController extends HttpServlet {
 		// se passi TRUE stampa solo eventi non scaduti e eventi abilitati
 		// se passi FALSE stampa eventi non scaduti indifferentemente da abilitati o meno
 		session.setAttribute("lista_eventi_non_scaduti", new EventoImpl().getEventiNonScaduti(true));
-		
+		session.setAttribute("lista_regioni", new RegioneImpl().getAllRegioni());
 		
 		
         response.sendRedirect("index.jsp");

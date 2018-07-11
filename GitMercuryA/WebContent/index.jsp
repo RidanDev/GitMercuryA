@@ -20,10 +20,10 @@
     	}
 	}
 
-	function populate() {
-		var regione = document.getElementById('regioni').value;
+	function populate_p() {
+		var id_regione = document.getElementById('regioni').value;
 		var ajax = new XMLHttpRequest();
-		ajax.open('GET', 'RegProvCom?reg=' + regione, true);
+		ajax.open('GET', 'RegProvCom?id_reg=' + id_regione, true);
 		ajax.onload = function() {
 			if (this.status == 200) {
 				document.getElementById('province').innerHTML = this.responseText;
@@ -89,11 +89,20 @@
 							<option>---Select---</option>
 						</select><br><br>
 						Regioni:
-						<select id="regioni" name="regioni"	onchange="populate()">
+						<select id="regioni" name="regioni"	onchange="populate_p()">
 							<option>---Select---</option>
-							<option value="toscana">Toscana</option>
-							<option value="liguria">Liguria</option>
-							<option value="marche">Marche</option>
+							
+							<%
+							ArrayList<Regione> rlist = (ArrayList<Regione>)session.getAttribute("lista_regioni");
+							
+							for(int i=0;i<rlist.size();i++){
+								if(rlist.get(i).getId() != -1) // così eviti il campo null delle regioni
+									out.println("<option value=" + rlist.get(i).getId() + ">" + rlist.get(i).getNome() + "</option>");
+							}
+							
+							%>
+						
+							
 						</select><br><br>
 						Province:
 						<select id="province" name="province">

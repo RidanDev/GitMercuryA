@@ -2,12 +2,18 @@ package it.mercurya.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import it.mercurya.model.Comune;
+import it.mercurya.model.Provincia;
+import it.mercurya.model.ProvinciaImpl;
+import it.mercurya.model.RegioneImpl;
 
 
 @WebServlet("/RegProvCom")
@@ -20,17 +26,20 @@ public class RegProvComController extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		response.setContentType("text/html");
 		
-		String regione=request.getParameter("reg");
+		String id_regione=request.getParameter("id_reg");
 		
 		
+		System.out.println("L'id della regione selezionata è: " + id_regione);
 		
+		// otteniamo le provincie della regione selezionata
+		ProvinciaImpl ri = new ProvinciaImpl();
+		ArrayList<Provincia> list = ri.getAllProvincieByIdRegione(Integer.parseInt(id_regione));
 		
-		String[] provTosc= {"firenze","pisa","livorno","lucca"};
-		String[] provLig= {"genova","savona","imperia","la spezia"};
-		String[] provMar= {"ancona","macerata","ascoli","pesaro"};
+		for(Provincia p: list) {
+			out.println("<option value=" + p.getId() + ">" + p.getNome() + "</option>");
+		}
 		
-		
-		
+		/*
 		if(regione.equals("toscana")) {
 			
 			for (String element : provTosc)
@@ -59,7 +68,7 @@ public class RegProvComController extends HttpServlet {
 				}
 			}
 		
-		
+		*/
 		
 		
 		
